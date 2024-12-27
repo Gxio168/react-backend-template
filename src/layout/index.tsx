@@ -1,10 +1,9 @@
-import { Button, Layout } from 'antd'
+import { Layout } from 'antd'
 import SideBar from './components/SiderBar'
 import Navbar from './components/Navbar'
 import Main from './components/Main'
 import NProgress from '@/components/progress-bar'
-import { useSettingActions, useSettings } from '@/store/settingStore'
-import { Icon } from '@iconify/react/dist/iconify.js'
+import { useSettings } from '@/store/settingStore'
 
 const { Header, Sider, Content } = Layout
 
@@ -19,8 +18,6 @@ const siderStyle: React.CSSProperties = {
 
 export default function DashBoardLayout() {
   const settings = useSettings()
-  
-
 
   return (
     <>

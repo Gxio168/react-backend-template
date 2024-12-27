@@ -8,14 +8,14 @@ const USER_LIST = [
     id: '1',
     username: 'admin',
     password: '123456',
-    avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
+    avatar: faker.image.avatarGitHub(),
     email: 'admin@qq.com',
   },
   {
     id: '2',
     username: 'editor',
     password: '123456',
-    avatar: 'https://q1.qlogo.cn/g?b=qq&nk=190848757&s=640',
+    avatar: faker.image.avatarGitHub(),
     email: 'editor@qq.com',
   },
 ]
