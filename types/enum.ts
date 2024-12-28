@@ -1,7 +1,7 @@
 // 背景色
 export enum ThemeMode {
   Light = 'light',
-  Dard = 'dark',
+  Dark = 'dark',
 }
 
 // Layout 布局

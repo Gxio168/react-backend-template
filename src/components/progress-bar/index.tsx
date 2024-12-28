@@ -1,3 +1,4 @@
+import { useThemeToken } from '@/theme/hooks/use-theme-token'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
@@ -20,8 +21,8 @@ const NProgressStyle = createGlobalStyle<{ $background: string }>`
 `
 
 export default function ProgressBar() {
+  const { colorPrimary } = useThemeToken()
   const location = useLocation()
-  const colorPrimary = '#1677ff'
 
   // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {

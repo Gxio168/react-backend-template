@@ -4,21 +4,24 @@ import Navbar from './components/Navbar'
 import Main from './components/Main'
 import NProgress from '@/components/progress-bar'
 import { useSettings } from '@/store/settingStore'
+import { useThemeToken } from '@/theme/hooks/use-theme-token'
 
 const { Header, Sider, Content } = Layout
 
-const siderStyle: React.CSSProperties = {
-  overflow: 'auto',
-  insetInlineStart: 0,
-  top: 0,
-  bottom: 0,
-  scrollbarWidth: 'thin',
-  scrollbarGutter: 'auto',
-}
-
 export default function DashBoardLayout() {
   const settings = useSettings()
+  const { colorBgContainer, colorBorder } = useThemeToken()
 
+  const siderStyle: React.CSSProperties = {
+    overflow: 'auto',
+    insetInlineStart: 0,
+    top: 0,
+    bottom: 0,
+    scrollbarWidth: 'thin',
+    scrollbarGutter: 'auto',
+    backgroundColor: colorBgContainer,
+    borderColor: colorBorder,
+  }
   return (
     <>
       <NProgress />
@@ -28,15 +31,15 @@ export default function DashBoardLayout() {
           collapsible
           collapsed={settings.collapseMenu}
           width={260}
-          className="h-screen bg-white border-r-[0.1px] border-dashed"
+          className="h-screen  border-r-[0.1px] border-dashed"
           style={siderStyle}>
           <SideBar collapsed={settings.collapseMenu} />
         </Sider>
         <Layout>
-          <Header className="bg-white p-0">
+          <Header className="p-0" style={{ backgroundColor: colorBgContainer }}>
             <Navbar />
           </Header>
-          <Content className="p-4 bg-white">
+          <Content className="p-4" style={{ backgroundColor: colorBgContainer }}>
             <Main />
           </Content>
         </Layout>

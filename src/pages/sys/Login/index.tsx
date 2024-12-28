@@ -4,9 +4,11 @@ import DashboardImg from '@/assets/img/background.png'
 import LoginForm from './LoginForm'
 import { useUserToken } from '@/store/userStore'
 import { Navigate } from 'react-router-dom'
+import { useThemeToken } from '@/theme/hooks/use-theme-token'
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 export default function Login() {
+  const { colorBgBase, colorBgContainer } = useThemeToken()
   const { t } = useTranslation()
 
   // 判断用户是否有权限
@@ -17,15 +19,19 @@ export default function Login() {
   }
   return (
     <>
-      <Layout className="bg-blue-50 h-screen w-screen flex flex-row">
+      <Layout className="h-screen w-screen flex flex-row">
         {/* 左侧展示 */}
-        <div className="h-screen w-[80%] flex justify-center items-center flex-col">
+        <div
+          className="h-screen w-[80%] flex justify-center items-center flex-col"
+          style={{ backgroundColor: colorBgContainer }}>
           <span className="text-5xl font-bold">Gxio Admin</span>
           <img src={DashboardImg} className="mb-10" />
           <Typography.Text>{t('sys.login.signInSecondTitle')}</Typography.Text>
         </div>
         {/* 右侧登录Form */}
-        <div className="h-screen flex-1  bg-slate-50 flex flex-col justify-center items-center">
+        <div
+          className="h-screen flex-1   flex flex-col justify-center items-center"
+          style={{ backgroundColor: colorBgBase }}>
           <LoginForm />
         </div>
       </Layout>

@@ -8,6 +8,7 @@ import { NavLink, replace } from 'react-router-dom'
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
 export default function Navbar() {
+  const { colorPrimary } = useThemeToken()
   const { avatar, username, email } = useUserInfo()
   const { clearUserInfoAndToken } = useUserActions()
   // 退出登录i
@@ -56,7 +57,12 @@ export default function Navbar() {
     { type: 'divider' },
     {
       label: (
-        <button className="font-bold text-orange-400" type="button">
+        <button
+          className="font-bold"
+          type="button"
+          style={{
+            color: colorPrimary,
+          }}>
           {t('sys.login.logout')}
         </button>
       ),

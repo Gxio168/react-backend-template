@@ -1,17 +1,19 @@
-import { useRouter } from '@/router/hooks/useRouter'
+import { useEffect, useState } from 'react'
 import { useLocation, useMatches } from 'react-router-dom'
+import { useRouter } from '@/router/hooks/useRouter'
 import { Icon } from '@iconify/react'
 import { Menu } from 'antd'
-
 import { setMenuList } from '../utils/setMenuList'
-
 import { Menu as menuList } from '@/config/index'
+import { useThemeToken } from '@/theme/hooks/use-theme-token'
 
 import type { MenuProps } from 'antd'
-import { useEffect, useState } from 'react'
+import { useSettings } from '@/store/settingStore'
 type MenuItem = Required<MenuProps>['items'][number]
 
 export default function SideBar({ collapsed }: any) {
+  const { colorPrimary, colorBgContainer } = useThemeToken()
+  const { themeMode } = useSettings()
   const menuItems: MenuItem[] = setMenuList(menuList)
   const router = useRouter()
   const location = useLocation()
@@ -42,7 +44,15 @@ export default function SideBar({ collapsed }: any) {
     <>
       <div className="flex items-center justify-center h-20">
         <Icon icon="noto:beaming-face-with-smiling-eyes" className="text-5xl" />
-        {!collapsed && <span className="font-bold text-2xl">Gxio Admin</span>}
+        {!collapsed && (
+          <span
+            className="font-bold text-lg ml-2"
+            style={{
+              color: colorPrimary,
+            }}>
+            Gxio Admin
+          </span>
+        )}
       </div>
       {/* 菜单部分 */}
       <div>
@@ -54,6 +64,8 @@ export default function SideBar({ collapsed }: any) {
           mode="inline"
           items={menuItems}
           className="!border-none"
+          theme={themeMode}
+          style={{ background: colorBgContainer }}
         />
       </div>
     </>
