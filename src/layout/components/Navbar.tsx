@@ -1,8 +1,9 @@
 import { useSettingActions, useSettings } from '@/store/settingStore'
 import { Icon } from '@iconify/react/dist/iconify.js'
 
-import Avatar from './Avatar'
-import Settings from './Settings'
+import Avatar from './navbar-sub/Avatar'
+import Settings from './navbar-sub/Settings'
+import ToggleLang from './navbar-sub/ToggleLang'
 
 export default function Navbar() {
   // 菜单折叠
@@ -29,6 +30,7 @@ export default function Navbar() {
         />
       </div>
       <div className="flex flex-row items-center justify-center space-x-3">
+        <ToggleLang />
         <Settings />
         <Avatar />
       </div>

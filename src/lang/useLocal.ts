@@ -44,6 +44,6 @@ export default function useLocal() {
   return {
     locale,
     changeLanguage,
-    language
+    language,
   }
 }

@@ -32,7 +32,13 @@ export default function Settings() {
   return (
     <>
       <div onClick={() => setDrawerOpen(true)} className="flex items-center">
-        <IconButton icon="line-md:cog-loop" className="text-3xl text-gray-500" />
+        <IconButton
+          icon="line-md:cog-loop"
+          className="text-[1.5em] text-gray-500 "
+          style={{
+            animation: 'linear',
+          }}
+        />
       </div>
       <Drawer
         placement="right"
