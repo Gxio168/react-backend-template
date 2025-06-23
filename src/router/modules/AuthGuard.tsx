@@ -10,7 +10,7 @@ export default function AuthGuard({ children }: Props) {
   const router = useRouter()
   const token = useUserToken()
   const check = useCallback(() => {
-    // 如果没有token
+    // TODO 还需要根据 token 解析用户信息后判断
     if (!token) {
       router.replace('/login')
     }

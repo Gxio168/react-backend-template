@@ -35,10 +35,10 @@ export default function Settings() {
     <>
       <div onClick={() => setDrawerOpen(true)} className="flex items-center">
         <IconButton
-          icon="line-md:cog-loop"
-          className="text-[1.5em] text-gray-500 "
+          icon="material-symbols-light:settings"
+          className="text-[1.5em] "
           style={{
-            animation: 'linear',
+            color: colorPrimarys[settings.themeColorPresets],
           }}
         />
       </div>

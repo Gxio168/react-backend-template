@@ -3,18 +3,19 @@ import { useLocation, useMatches } from 'react-router-dom'
 import { useRouter } from '@/router/hooks/useRouter'
 import { Icon } from '@iconify/react'
 import { Menu } from 'antd'
-import { setMenuList } from '../utils/setMenuList'
 import { Menu as menuList } from '@/config/index'
 import { useThemeToken } from '@/theme/hooks/use-theme-token'
 
 import type { MenuProps } from 'antd'
 import { useSettings } from '@/store/settingStore'
+import { getMenuList } from '@/router/utils/getDynamicRoutes'
 type MenuItem = Required<MenuProps>['items'][number]
 
 export default function SideBar({ collapsed }: any) {
   const { colorPrimary, colorBgContainer } = useThemeToken()
   const { themeMode } = useSettings()
-  const menuItems: MenuItem[] = setMenuList(menuList)
+
+  const menuItems: MenuItem[] = getMenuList(menuList)
   const router = useRouter()
   const location = useLocation()
 
