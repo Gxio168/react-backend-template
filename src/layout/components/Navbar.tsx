@@ -18,6 +18,7 @@ export default function Navbar() {
 
   return (
     <div className="flex justify-between items-center  pr-10">
+      {/*左侧折叠  */}
       <div className="flex items-center justify-center p-2 cursor-pointer">
         <Icon
           icon={
@@ -29,6 +30,7 @@ export default function Navbar() {
           onClick={handleCollapse}
         />
       </div>
+      {/* 右侧图标 */}
       <div className="flex flex-row items-center justify-center space-x-3">
         <ToggleLang />
         <Settings />

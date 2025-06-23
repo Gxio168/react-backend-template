@@ -5,8 +5,10 @@ import { colorPrimarys } from '@/theme/antd-theme'
 import { Icon } from '@iconify/react/dist/iconify.js'
 import { Card, Drawer } from 'antd'
 import { useState } from 'react'
+import { useTranslation } from 'react-i18next'
 
 export default function Settings() {
+  const { t } = useTranslation()
   const [drawerOpen, setDrawerOpen] = useState(false)
   const { setSettings } = useSettingActions()
   const settings = useSettings()
@@ -42,7 +44,7 @@ export default function Settings() {
       </div>
       <Drawer
         placement="right"
-        title="Settings"
+        title={t('common.settingText')}
         open={drawerOpen}
         onClose={() => setDrawerOpen(false)}
         closable={false}
@@ -63,7 +65,7 @@ export default function Settings() {
         <div className="flex flex-col gap-6 p-6">
           {/* theme Mode */}
           <div>
-            <span className="text-gray-500 text-lg mb-2 block">Mode</span>
+            <span className="text-gray-500 text-lg mb-2 block">{t('common.modeText')}</span>
             <div className="flex  items-center  gap-4">
               <Card
                 className="flex h-20 w-full cursor-pointer items-center justify-center"
@@ -88,7 +90,7 @@ export default function Settings() {
 
           {/* Presets */}
           <div>
-            <span className="text-gray-500 text-lg mb-2 block">Presets</span>
+            <span className="text-gray-500 text-lg mb-2 block">{t('common.presetText')}</span>
             <div className="grid grid-cols-3 gap-x-4 gap-y-3">
               {Object.entries(colorPrimarys).map(([preset, color]) => {
                 return (
