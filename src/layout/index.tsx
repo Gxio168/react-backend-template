@@ -24,21 +24,26 @@ export default function DashBoardLayout() {
   }
   return (
     <>
+      {/* 进度条 */}
       <NProgress />
       <Layout>
+        {/* 侧边栏 */}
         <Sider
           trigger={null}
           collapsible
           collapsed={settings.collapseMenu}
           width={260}
-          className="h-screen  border-r-[0.1px] border-dashed"
+          className="h-screen border-r-[0.1px] border-dashed"
           style={siderStyle}>
           <SideBar collapsed={settings.collapseMenu} />
         </Sider>
+        {/* 右侧 */}
         <Layout>
-          <Header className="p-0" style={{ backgroundColor: colorBgContainer }}>
+          {/* 顶部 */}
+          <Header className="p-0 h-10" style={{ backgroundColor: colorBgContainer }}>
             <Navbar />
           </Header>
+          {/* 内容 */}
           <Content className="p-4" style={{ backgroundColor: colorBgContainer }}>
             <Main />
           </Content>

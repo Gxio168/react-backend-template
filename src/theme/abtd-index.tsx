@@ -10,10 +10,12 @@ import {
   customThemeTokenConfig,
   themeModeToken,
 } from './antd-theme'
+
 type Props = {
   children: React.ReactNode
 }
 
+// 自定义 antdConfig
 export default function AntdConfig({ children }: Props) {
   const { themeMode, themeColorPresets } = useSettings()
   const { language } = useLocale()

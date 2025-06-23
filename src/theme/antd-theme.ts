@@ -1,6 +1,6 @@
 import type { ThemeConfig } from 'antd'
-
 import type { ThemeColorPresets } from '#/enum'
+
 const customThemeTokenConfig: ThemeConfig['token'] = {
   colorSuccess: '#22C55E',
   colorWarning: '#FFAB00',

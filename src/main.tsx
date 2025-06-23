@@ -13,4 +13,5 @@ createRoot(document.getElementById('root')!).render(
   </StrictMode>
 )
 
+// 模拟网络请求
 worker.start()

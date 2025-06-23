@@ -2,13 +2,15 @@ import { useThemeToken } from '@/theme/hooks/use-theme-token'
 import NProgress from 'nprogress'
 import 'nprogress/nprogress.css'
 import { useEffect } from 'react'
-import { useLocation } from 'react-router-dom'
+import { NavigationType, useLocation, useNavigationType } from 'react-router-dom'
 import { createGlobalStyle } from 'styled-components'
 
 NProgress.configure({
   showSpinner: false,
+  minimum: 0.3, // 最小进度
 })
 
+// 设置样式
 const NProgressStyle = createGlobalStyle<{ $background: string }>`
 	#nprogress .bar {
 		background: ${props => props.$background} !important;
@@ -23,9 +25,15 @@ const NProgressStyle = createGlobalStyle<{ $background: string }>`
 export default function ProgressBar() {
   const { colorPrimary } = useThemeToken()
   const location = useLocation()
+  const navigationType = useNavigationType()
 
-  // biome-ignore lint/correctness/useExhaustiveDependencies: <explanation>
   useEffect(() => {
+    const isSamePageNavigation =
+      navigationType === NavigationType.Replace || navigationType === NavigationType.Push
+    // 若是同页面跳转，不需要进度条
+    if (!isSamePageNavigation) {
+      return
+    }
     NProgress.start()
     // 路由变化完成时, 结束进度条
     const timer = setTimeout(() => {
@@ -36,7 +44,7 @@ export default function ProgressBar() {
       clearTimeout(timer)
       NProgress.done()
     }
-  }, [location.pathname])
+  }, [location.pathname, navigationType])
 
   return <NProgressStyle $background={colorPrimary} />
 }

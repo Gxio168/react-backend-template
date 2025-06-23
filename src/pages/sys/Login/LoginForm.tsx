@@ -3,17 +3,52 @@ import { useSignIn } from '@/store/userStore'
 
 import type { FormProps } from 'antd'
 import { Button, Checkbox, Form, Input } from 'antd'
+import { useLoginActions, useLoginInfo } from '@/store/loginStore'
+import { useEffect, useState } from 'react'
 
 type FieldType = {
   username?: string
   password?: string
-  remember?: string
+  isRemember?: string
 }
 
 export default function Login() {
+  const [form] = Form.useForm()
   const { t } = useTranslation()
+  const { username, password, isRemember } = useLoginInfo()
+  const { setLoginInfo, clearLoginInfo } = useLoginActions()
+  const [remember, setRemember] = useState(isRemember)
+
+  // 初始化表单值
+  useEffect(() => {
+    // 初始化执行一次
+    if (isRemember) {
+      form.setFieldsValue({
+        username,
+        password,
+        isRemember,
+      })
+    }
+  }, [])
+  // 监听是否记住密码
+  const onValuesChange = (changedValues: any) => {
+    if (changedValues.isRemember !== undefined) {
+      setRemember(changedValues.isRemember)
+    }
+  }
+
+  // 登录
   const signIn = useSignIn()
   const handleFinish: FormProps<FieldType>['onFinish'] = async (values: any) => {
+    if (!remember) {
+      clearLoginInfo()
+    } else {
+      setLoginInfo({
+        username: values.username,
+        password: values.password,
+        isRemember: values.isRemember,
+      })
+    }
     await signIn(values)
   }
 
@@ -23,12 +58,9 @@ export default function Login() {
       <Form
         name="login"
         className="w-[80%] mt-4"
-        initialValues={{
-          remember: true,
-          username: 'admin',
-          password: '123456',
-        }}
+        form={form}
         onFinish={handleFinish}
+        onValuesChange={onValuesChange}
         autoComplete="off">
         <Form.Item<FieldType>
           name="username"
@@ -42,7 +74,7 @@ export default function Login() {
           <Input.Password placeholder={t('sys.login.passwordPlaceholder')} />
         </Form.Item>
 
-        <Form.Item<FieldType> name="remember" valuePropName="checked" label={null}>
+        <Form.Item<FieldType> name="isRemember" valuePropName="checked" label={null}>
           <Checkbox>{t('sys.login.rememberMe')}</Checkbox>
         </Form.Item>
 

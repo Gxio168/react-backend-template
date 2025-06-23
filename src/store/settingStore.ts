@@ -3,14 +3,14 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 
 type SettingsType = {
-  themeColorPresets: ThemeColorPresets
-  themeMode: ThemeMode
-  themeLayout: ThemeLayout
-  themeStretch: boolean
-  breadCrumb: boolean
-  multiTab: boolean
-  darkSidebar: boolean
-  collapseMenu: boolean
+  themeColorPresets: ThemeColorPresets // 主题色预设
+  themeMode: ThemeMode // 主题模式
+  themeLayout: ThemeLayout // 布局
+  themeStretch: boolean // 是否拉伸布局
+  breadCrumb: boolean // 是否显示面包屑
+  multiTab: boolean // 是否启用多标签页
+  darkSidebar: boolean // 侧边栏暗色模式
+  collapseMenu: boolean // 侧边栏折叠状态
 }
 
 type SettingStore = {

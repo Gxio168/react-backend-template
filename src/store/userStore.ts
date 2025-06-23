@@ -3,7 +3,6 @@ import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { toast } from 'sonner'
 import { StorageEnum } from '#/enum'
-
 import { type SignInReq, reqSignin } from '@/api/modules/user'
 import type { UserInfo } from '#/entity'
 
@@ -23,8 +22,8 @@ type UserStore = {
 const useUserStore = create<UserStore>()(
   persist(
     set => ({
-      userInfo: {},
-      userToken: '',
+      [StorageEnum.UserInfo]: {},
+      [StorageEnum.UserToken]: '',
       actions: {
         setUserInfo: userInfo => set({ userInfo }),
         setUserToken: userToken => set({ userToken }),

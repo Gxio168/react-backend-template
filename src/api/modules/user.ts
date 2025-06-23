@@ -2,11 +2,13 @@ import request from '../index'
 
 import type { UserInfo, UserToken } from '#/entity'
 
+// 登录
 export interface SignInReq {
   username: string
   password: string
 }
 
+// 注册
 export interface SignUpReq extends SignInReq {
   email: string
 }
