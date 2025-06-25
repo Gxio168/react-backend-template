@@ -1,8 +1,6 @@
 import App from './App'
 import { createRoot } from 'react-dom/client'
 
-import worker from './mocks/index.js'
-
 import '@/lang'
 import '@/theme/index.css'
 import { StrictMode } from 'react'
@@ -12,6 +10,3 @@ createRoot(document.getElementById('root')!).render(
     <App />
   </StrictMode>
 )
-
-// 模拟网络请求
-worker.start()

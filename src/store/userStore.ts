@@ -1,13 +1,10 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useSearchParams } from 'react-router-dom'
 import { create } from 'zustand'
 import { createJSONStorage, persist } from 'zustand/middleware'
 import { toast } from 'sonner'
 import { StorageEnum } from '#/enum'
-import { type SignInReq, reqSignin } from '@/api/modules/user'
+import { type UserLoginReq, reqLogin } from '@/api/modules/user'
 import type { UserInfo } from '#/entity'
-
-// 首页
-const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
 type UserStore = {
   userInfo: Partial<UserInfo>
@@ -46,16 +43,18 @@ export const useUserToken = () => useUserStore(state => state.userToken)
 export const useUserActions = () => useUserStore(state => state.actions)
 
 export const useSignIn = () => {
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-  const { setUserInfo, setUserToken, clearUserInfoAndToken } = useUserActions()
+  const redirect = searchParams.get('redirect') || '/'
+  const { setUserToken, clearUserInfoAndToken } = useUserActions()
 
-  const signIn = async (data: SignInReq) => {
+  const signIn = async (data: UserLoginReq) => {
     try {
-      const res = await reqSignin(data)
-      const { user, token } = res
-      setUserInfo(user)
+      const res = await reqLogin(data)
+      const { token } = res
+      // 保存 token 到本地
       setUserToken(token!)
-      navigate(HOMEPAGE, { replace: true })
+      navigate(redirect, { replace: true })
     } catch (err: any) {
       clearUserInfoAndToken()
       navigate('/login', { replace: true })

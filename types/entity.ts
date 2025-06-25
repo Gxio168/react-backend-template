@@ -2,8 +2,8 @@ import { BasicStatus, PermissionType } from './enum'
 
 export interface UserInfo {
   id: string
-  email: string
   username: string
+  email?: string
   password?: string
   avatar?: string
   role?: Role

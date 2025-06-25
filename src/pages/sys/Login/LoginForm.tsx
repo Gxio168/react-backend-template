@@ -43,6 +43,7 @@ export default function Login() {
     if (!remember) {
       clearLoginInfo()
     } else {
+      // 保存登录信息到 localStorage
       setLoginInfo({
         username: values.username,
         password: values.password,

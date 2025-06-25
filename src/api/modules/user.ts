@@ -1,21 +1,42 @@
 import request from '../index'
 
-import type { UserInfo, UserToken } from '#/entity'
+import type { UserToken, UserInfo } from '#/entity'
 
 // 登录
-export interface SignInReq {
+export interface UserLoginReq {
   username: string
   password: string
 }
 
 // 注册
-export interface SignUpReq extends SignInReq {
-  email: string
-}
-export type SignInRes = UserToken & { user: UserInfo }
+export interface UserRegisterReq extends UserLoginReq {}
+
+export type UserLoginRes = UserToken & { id: number }
 
 export enum UserApi {
-  SignIn = '/auth/signin',
+  LOGIN = '/user/login',
+  REGISTER = '/user/register',
+  PROFILE = '/user/profile',
 }
 
-export const reqSignin = (data: SignInReq) => request.post<SignInRes>({ url: UserApi.SignIn, data })
+/**
+ * 登录
+ * @param data
+ * @returns
+ */
+export const reqLogin = (data: UserLoginReq) => {
+  return request.post<UserLoginRes>({ url: UserApi.LOGIN, data })
+}
+
+/**
+ * 注册
+ * @param data
+ * @returns
+ */
+export const reqRegister = (data: UserRegisterReq) => {
+  return request.post<string>({ url: UserApi.REGISTER, data })
+}
+
+export const reqUserProfile = () => {
+  return request.get<UserInfo>({ url: UserApi.PROFILE })
+}
