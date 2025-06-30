@@ -1,13 +1,4 @@
-export type RouteItem = {
-  id: number
-  parentId: number | null
-  label: string
-  name: string
-  route: string
-  order: number
-  icon?: string
-  component?: string
-}
+import type { RouteItem } from '#/entity'
 
 // 根据角色返回的用户所有能访问的路由和菜单信息
 export const Menu: RouteItem[] = [

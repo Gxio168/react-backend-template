@@ -42,3 +42,17 @@ export interface Permission {
 export interface UserToken {
   token?: string
 }
+
+/**
+ * 路由
+ */
+export interface RouteItem {
+  id: number
+  parentId: number | null
+  label: string
+  name: string
+  route: string
+  order: number
+  icon?: string
+  component?: string
+}
