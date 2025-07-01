@@ -38,13 +38,13 @@ export default function DashBoardLayout() {
           <SideBar collapsed={settings.collapseMenu} />
         </Sider>
         {/* 右侧 */}
-        <Layout>
+        <Layout className="h-screen">
           {/* 顶部 */}
           <Header className="p-0 h-10" style={{ backgroundColor: colorBgContainer }}>
             <Navbar />
           </Header>
           {/* 内容 */}
-          <Content className="p-4" style={{ backgroundColor: colorBgContainer }}>
+          <Content className="h-full" style={{ backgroundColor: colorBgContainer }}>
             <Main />
           </Content>
         </Layout>
