@@ -79,11 +79,9 @@
       "workbench": "工作台",
       "analysis": "分析",
       "management": "管理",
-      "user": {
-        "index": "用户",
-        "profile": "个人资料",
-        "account": "账户"
-      },
+      "user": "用户管理",
+      "role": "角色管理",
+      "route": "路由管理",
       "system": {
         "index": "系统",
         "organization": "组织",

@@ -80,11 +80,9 @@
       "workbench": "Workbench",
       "analysis": "Analysis",
       "management": "Management",
-      "user": {
-        "index": "User",
-        "profile": "Profile",
-        "account": "Account"
-      },
+      "user": "User Management",
+      "role": "Role Management",
+      "route": "Route Management",
       "system": {
         "index": "System",
         "organization": "Organization",

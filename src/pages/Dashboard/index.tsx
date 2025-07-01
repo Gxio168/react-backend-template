@@ -1,7 +1,7 @@
 export default function Dashboard() {
   return (
     <>
-      <div>Dashboard</div>
+      <div>主页啊嗯</div>
     </>
   )
 }
