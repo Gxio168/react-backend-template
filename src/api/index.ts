@@ -5,7 +5,7 @@ import { t } from '@/lang'
 import { toast } from 'sonner'
 import type { Result } from '#/api'
 import { ResultEnum } from '#/enum'
-import useUserStore from '@/store/userStore'
+import useUserStore, { useSignOut } from '@/store/userStore'
 
 // 创建 axios 实例
 const axiosInstance = axios.create({
@@ -43,8 +43,9 @@ axiosInstance.interceptors.response.use(
     throw new Error(msg || t('sys.api.apiRequestFailed'))
   },
   (error: AxiosError<Result>) => {
-    const { response, message } = error || {}
+    const signOut = useSignOut()
 
+    const { response, message } = error || {}
     const errMsg = response?.data?.msg || message || t('sys.api.errorMessage')
     toast.error(errMsg, {
       position: 'top-center',
@@ -52,7 +53,8 @@ axiosInstance.interceptors.response.use(
 
     const status = response?.status
     if (status === 401) {
-      // TODO 清除用户数据
+      // 退出登录
+      signOut()
     }
     return Promise.reject(error)
   }

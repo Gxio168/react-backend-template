@@ -1,25 +1,21 @@
-import { useUserInfo, useUserActions } from '@/store/userStore'
+import { useRouter } from '@/router/hooks/useRouter'
+import { useUserInfo } from '@/store/userStore'
 import { useThemeToken } from '@/theme/hooks/use-theme-token'
 import { Avatar, Divider, Dropdown, DropdownProps, MenuProps } from 'antd'
 import { t } from 'i18next'
 import React from 'react'
-import { NavLink, replace } from 'react-router-dom'
+import { NavLink, useLocation } from 'react-router-dom'
 
 const { VITE_APP_HOMEPAGE: HOMEPAGE } = import.meta.env
 
 export default function Navbar() {
+  const router = useRouter()
+  const location = useLocation()
   const { colorPrimary } = useThemeToken()
   const { avatar, username, email } = useUserInfo()
-  const { clearUserInfoAndToken } = useUserActions()
-  // 退出登录i
+  // 退出登录
   const logout = () => {
-    try {
-      clearUserInfoAndToken()
-    } catch (error) {
-      console.log(error)
-    } finally {
-      replace('/login')
-    }
+    router.replace(location.pathname + '?logout=true')
   }
 
   const { colorBgElevated, borderRadiusLG, boxShadowSecondary } = useThemeToken()
